@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miles Cochran-Branson</title>
+    <!-- Bootstrap Framework -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Academicons for academic icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <!-- Showdown for Markdown conversion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+    <!-- MathJax for LaTeX math rendering -->
+    <script src="js/mathjax-config.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- Styling -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <script src="js/theme-handler.js" defer></script>
+    <script defer src="../js/markdown-loader.js"></script>
+    <script src="js/toc.js" defer></script>
+    <script src="js/bibtex-parser.js" defer></script>
+</head>
+<body>
+    <!-- Header with custom styling -->
+    <header>
+        <div class="header-content">
+            <div class="primary-nav">
+                <!-- <h1>Miles Cochran-Branson</h1> -->
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="pages/publications.html">Publications</a></li>
+                        <li><a href="pages/cv.html">CV</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+  
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Main Content Column -->
+                         <!-- Contact Info on the Sidebar -->
+            <div class="col-md-4 sidebar">
+                <!-- Profile picture -->
+                <img class="profile-image img-responsive" src="content/profile.png" alt="Miles Cochran-Branson">
+                <!-- <div class="contact-info">
+                    <p>Department of Physics<br>
+                    University of Washington<br>
+                    Seattle, WA, 98195</p>
+                </div> -->
+            </div>
+
+            <div class="col-md-8">
+                <div class="content-section">
+                    <h2>Miles Cochran-Branson</h2>
+                    <p><i>Second-year Physics Ph.D. student at University of Washington</i></p>
+                    <p>Hi! I'm Miles, a PhD student studying experimental, high energy, particle, physics. I'm interested in all things physics, in particular computational and mathematical physics and machine learning applications to fundamental experiment. Primarily, I am an experimentalist but am always looking to expand my horizons.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="markdown-content" data-markdown="content/about.md">Loading...</div>
+
+        <div class="full-width-section">
+            <h2 id="research">Research Interests</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="research-text">Machine Learning</div>
+                </div>
+                
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="research-text">Coprocessor accelerated algorithms</div>
+                </div>
+                
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="research-text">Inference as-a-service</div>
+                </div>
+                
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="research-text">Particle Physics</div>
+                </div>
+                
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="research-text">High Energy Physics</div>
+                </div>
+                
+                <div class="research-card">
+                    <div class="research-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="research-text">Experimental Physics</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Full-width sections below the main content -->
+        <div class="full-width-section">
+            <h2 id="publications">Select Publications</h2>
+            <ul id="publications-list" class="publication-list">
+                <li class="loading-indicator">Loading publications...</li>
+            </ul>
+        </div>
+
+        <div class="full-width-section">
+            <h2 class="visually-hidden">Connect</h2>
+            <div class="social-icons">
+                <a href="mailto:milescb@uw.edu" title="Email" aria-label="Email Address">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/mgcb" title="LinkedIn" aria-label="LinkedIn Profile">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/milescb" title="GitHub" aria-label="GitHub Profile">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://gitlab.cern.ch/mcochran" title="GitLab" aria-label="GitLab Profile">
+                    <i class="fab fa-gitlab"></i>
+                </a>
+                <a href="https://orcid.org/0000-0003-1020-1108" title="ORCID" aria-label="ORCID Profile">
+                    <i class="ai ai-orcid"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="page-footer">
+        <p>&copy; <span id="copyright-year"></span> Miles Cochran-Branson</p>
+        <script>document.getElementById('copyright-year').textContent = new Date().getFullYear();</script>
+    </footer>
+</body>
+</html>

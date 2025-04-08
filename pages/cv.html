@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plants</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/theme.css">
+    <script src="../js/theme-handler.js" defer></script>
+    <script src="../js/toc.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="cv.html" class="active">CV</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+
+        <main>
+            <h1>Curriculum Vitae</h1>
+            <div class="pdf-container">
+                <embed src="../content/cv.pdf" type="application/pdf" width="100%" height="800px" />
+                <!-- Fallback for browsers that don't support embed -->
+                <p class="pdf-fallback">
+                    Your browser doesn't support embedded PDFs. 
+                    <a href="../content/cv.pdf" target="_blank">Click here to download the PDF</a>.
+                </p>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; <span id="copyright-year"></span> Miles Cochran-Branson</p>
+        </footer>
+    </div>
+</body>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Miles Cochran-Branson</title>
+    <!-- Bootstrap Framework -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Academicons for academic icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <!-- MathJax for LaTeX math rendering -->
+    <script src="../js/mathjax-config.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- Styling -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <script src="../js/theme-handler.js" defer></script>
+    <script src="../js/toc.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="publications.html" class="active">Publications</a></li>
+                    <li><a href="cv.html">CV</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <main>
+            <h2>Publications</h2>
+
+            <h3>Research Articles</h3>
+            <ul id="articles-list" class="publication-list"></ul>
+
+            <h3>Conference Presentations</h3>
+            <ul id="presentations-list" class="publication-list"></ul>
+
+        </main>
+        
+        <footer>
+            <p>&copy; <span id="copyright-year"></span> Miles Cochran-Branson</p>
+            <script>document.getElementById('copyright-year').textContent = new Date().getFullYear();</script>
+        </footer>
+    </div>
+    
+    <!-- Include the BibTeX parser script -->
+    <script src="../js/bibtex-parser.js"></script>
+</body>
+</html>
