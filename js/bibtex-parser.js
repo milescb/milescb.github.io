@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("DOMContentLoaded event fired, starting BibTeX parser");
     
     // Fetch the BibTeX file
-    console.log("Fetching BibTeX file from content/publications.bib");
+    console.log("Fetching BibTeX file from content/documents/publications.bib");
     const isPublicationsPage = window.location.pathname.includes('/pages/');
-    const bibPath = isPublicationsPage ? '../content/publications.bib' : 'content/publications.bib';
+    const bibPath = isPublicationsPage ? '../content/documents/publications.bib' : 'content/documents/publications.bib';
     
     fetch(bibPath)
         .then(response => {
