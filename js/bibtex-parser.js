@@ -193,11 +193,14 @@ function displayPublications(publications) {
         pub.type === 'article' || 
         (pub.fields.type && pub.fields.type.toLowerCase() === 'article'));
     
+    const invitedTalks = publications.filter(pub => 
+        pub.fields.note && pub.fields.note.toLowerCase().includes('invited'));
+
     const presentations = publications.filter(pub => 
-        pub.type === 'presentation' || 
-        (pub.fields.type && pub.fields.type.toLowerCase() === 'presentation'));
+        (pub.type === 'presentation' || (pub.fields.type && pub.fields.type.toLowerCase() === 'presentation')) &&
+        !invitedTalks.includes(pub));
     
-    console.log(`Separated into ${articles.length} articles and ${presentations.length} presentations`);
+    console.log(`Separated into ${articles.length} articles, ${invitedTalks.length} invited talks, and ${presentations.length} presentations`);
     
     // Check if we're on the main page - filter for selected publications only
     const isMainPage = !window.location.pathname.includes('/publications.html');
@@ -216,6 +219,22 @@ function displayPublications(publications) {
         displayPublicationList(displayArticles, articlesContainer);
     } else if (articles.length > 0) {
         console.error("Articles list container not found!");
+    }
+
+    // Handle invited talks
+    const invitedTalksContainer = document.getElementById('invited-talks-list');
+    if (invitedTalksContainer) {
+        invitedTalksContainer.innerHTML = ''; // Clear any existing content
+        
+        let displayInvitedTalks = invitedTalks;
+        if (isMainPage) {
+            displayInvitedTalks = invitedTalks.filter(pub => pub.selected);
+            console.log(`Filtered to ${displayInvitedTalks.length} selected invited talks for main page`);
+        }
+        
+        displayPublicationList(displayInvitedTalks, invitedTalksContainer);
+    } else if (invitedTalks.length > 0) {
+        console.error("Invited talks list container not found!");
     }
     
     // Handle presentations
