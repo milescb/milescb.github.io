@@ -301,7 +301,6 @@ function displayPublicationList(publications, container) {
         
         // Determine the link URL - prefer direct URL if available
         let linkUrl = '';
-        let titleElement = '';
         
         if (pub.fields.url) {
             linkUrl = pub.fields.url;
@@ -321,13 +320,6 @@ function displayPublicationList(publications, container) {
         console.log("Original title:", pub.fields.title);
         const processedTitle = processLatex(pub.fields.title);
         console.log("Processed title:", processedTitle);
-        
-        // Format the title with link if available
-        if (linkUrl) {
-            titleElement = `<a href="${linkUrl}" target="_blank">${processedTitle}</a>`;
-        } else {
-            titleElement = processedTitle;
-        }
         
         // Journal/venue information
         let venueInfo = '';
@@ -369,12 +361,19 @@ function displayPublicationList(publications, container) {
         
         console.log("Venue info:", venueInfo);
         
-        // Create HTML structure
-        li.innerHTML = `
-            <div class="pub-title">${titleElement}</div>
+        // Create the inner HTML content for the publication
+        const innerHTML = `
+            <div class="pub-title">${processedTitle}</div>
             <div class="pub-authors">${authors}</div>
             <div class="pub-venue">${venueInfo}.</div>
         `;
+
+        // If a link is available, wrap the content in an anchor tag. Otherwise, use a div.
+        if (linkUrl) {
+            li.innerHTML = `<a href="${linkUrl}" target="_blank" class="publication-link-wrapper">${innerHTML}</a>`;
+        } else {
+            li.innerHTML = innerHTML;
+        }
         
         container.appendChild(li);
         console.log(`Publication #${publicationCounter} added to DOM`);

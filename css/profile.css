@@ -52,6 +52,19 @@
     box-shadow: 0 5px 15px var(--shadow-color);
 }
 
+/* New wrapper for making the whole item clickable */
+.publication-link-wrapper {
+    display: block;
+    padding: 15px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.publication-link-wrapper:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
 .pub-title {
     font-weight: 600;
     margin-bottom: 8px;
