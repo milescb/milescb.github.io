@@ -174,9 +174,37 @@ function initializeTableOfContents() {
     }
 }
 
-// Call the initialization function when the DOM is ready
+// Navigation dropdown functionality for Projects menu
+function initializeNavigationDropdown() {
+    const navDropdownButtons = document.querySelectorAll('nav .dropdown-button');
+    
+    navDropdownButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const dropdown = this.closest('.dropdown');
+            const content = dropdown.querySelector('.dropdown-content');
+            content.classList.toggle('show');
+        });
+    });
+
+    // Close nav dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('nav .dropdown')) {
+            document.querySelectorAll('nav .dropdown-content').forEach(content => {
+                content.classList.remove('show');
+            });
+        }
+    });
+}
+
+// Call the initialization functions when the DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeTableOfContents);
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeTableOfContents();
+        initializeNavigationDropdown();
+    });
 } else {
     initializeTableOfContents();
+    initializeNavigationDropdown();
 }

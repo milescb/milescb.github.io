@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics-Informed Neural Networks</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Showdown for Markdown conversion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+    <!-- MathJax for LaTeX math rendering -->
+    <script src="../js/mathjax-config.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- Styling -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/markdown.css">
+    <script src="../js/theme-handler.js" defer></script>
+    <script src="../js/markdown-loader.js" defer></script>
+    <script src="../js/toc.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../pages/publications.html">Publications</a></li>
+                    <li><a href="../pages/cv.html">CV</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-button active">
+                            Projects
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <ul class="toc-list">
+                                <li class="toc-item toc-h2"><a href="pinn.html">Physics-Informed Neural Networks</a></li>
+                                <li class="toc-item toc-h2"><a href="traccc.html">GPU Track Reconstruction</a></li>
+                                <li class="toc-item toc-h2"><a href="ml-physics.html">ML for Particle Physics</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <div id="markdown-content" data-markdown="../content/markdown/project-pinn.md">
+                Loading...
+            </div>
+        </main>
+    </div>
+
+    <footer class="page-footer">
+        <p>&copy; <span id="copyright-year"></span> Miles Cochran-Branson</p>
+        <script>document.getElementById('copyright-year').textContent = new Date().getFullYear();</script>
+    </footer>
+</body>
+</html>

@@ -67,6 +67,15 @@ async function loadMarkdown() {
         
         addCopyButtons();
         addHeaderIds();
+        
+        // Trigger MathJax typesetting for math equations
+        if (typeof MathJax !== 'undefined') {
+            MathJax.typesetPromise().catch((err) => console.log('MathJax typeset failed: ', err));
+        }
+        
+        // Dispatch event to signal markdown has loaded (for TOC creation)
+        document.dispatchEvent(new Event('markdownLoaded'));
+        
     } catch (error) {
         console.error("Error loading Markdown file:", error);
         markdownContainer.innerHTML = "<p>Failed to load content.</p>";
