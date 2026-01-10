@@ -38,7 +38,6 @@
 
 #markdown-content h1 {
     font-size: 2em;
-    border-bottom: 1px solid var(--markdown-border);
     padding-bottom: 0.3em;
 }
 
