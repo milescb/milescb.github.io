@@ -6,6 +6,15 @@ async function loadMarkdown() {
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const text = await response.text();
         
+        // Store math content to restore later
+        const mathPlaceholders = [];
+        
+        // Extract all math expressions (both block and inline)
+        let textWithoutMath = text.replace(/(\$\$[\s\S]*?\$\$)|(\$[^\$\n]+\$)/g, (match) => {
+            mathPlaceholders.push(match);
+            return `MATHPLACEHOLDER${mathPlaceholders.length - 1}MATHEND`;
+        });
+        
         // Configure showdown with GitHub flavored markdown
         const converter = new showdown.Converter({
             ghCodeBlocks: true,
@@ -19,7 +28,15 @@ async function loadMarkdown() {
         converter.setFlavor('github');
         
         // Convert markdown to HTML
-        markdownContainer.innerHTML = converter.makeHtml(text);
+        let html = converter.makeHtml(textWithoutMath);
+        
+        // Restore math content - simple string split/join works better
+        mathPlaceholders.forEach((math, index) => {
+            const placeholder = `MATHPLACEHOLDER${index}MATHEND`;
+            html = html.split(placeholder).join(math);
+        });
+        
+        markdownContainer.innerHTML = html;
         
         // Process code blocks to ensure proper language classes
         document.querySelectorAll('pre code').forEach((block) => {
