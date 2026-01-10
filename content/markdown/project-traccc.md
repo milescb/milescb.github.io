@@ -24,23 +24,44 @@ Using CUDA and SYCL to parallelize:
 - Track following
 - Track fitting
 
-### Performance Metrics
+### GPU as a Service Architecture
 
-| Algorithm | CPU Time | GPU Time | Speedup |
-|-----------|----------|----------|---------|
-| Clustering | 45 ms | 2.1 ms | 21.4× |
-| Seeding | 120 ms | 5.8 ms | 20.7× |
-| Fitting | 80 ms | 3.2 ms | 25.0× |
+Rather than directly coupling CPU and GPU on the same node, we implement a coprocessor-as-a-Service (aaS) paradigm that separates the GPU algorithm onto a dedicated GPU server as shown below:
 
-## Infrastructure
+<img src="/content/images/aas_picture.png" alt="GPU as a Service Architecture Comparison" style="max-width: 100%; height: auto; display: block; margin: 20px auto;">
 
-The project leverages cloud infrastructure to provide tracking reconstruction as a service, enabling distributed processing across multiple GPU nodes.
+*Comparison of Heterogeneous Computing (Direct Connection) and GPU as a Service paradigms. Direct connection couples CPU and GPU on the same node, while as-a-Service separates the GPU algorithm to a dedicated GPU server.*
 
-## Publications
+This approach offers several key advantages:
 
-This work has contributed to several publications in high-energy physics conferences and journals.
+**Motivation:**
+- Heterogeneous computing can result in inefficient GPU utilization when many CPU processes cannot fully occupy a single GPU, or when a GPU algorithm cannot fully occupy a GPU even with concurrent CPU processes
+- Traditional integration of complex GPU code into production frameworks like ATHENA is challenging and requires tight coupling
+- Industry-proven containerization and backend approaches for serving machine learning models can be applied to particle tracking
 
-## Links
+**Implementation:**
+We use the Triton Inference Server as our backend framework, with a custom C++ backend wrapping the TRACCC algorithm. This architecture provides:
+- Multiple concurrent instances of the GPU backend on a single device
+- Dynamic management of client requests from single or multiple sources
+- Minimal data exchange between client and server via gRPC protocol
+- Complete decoupling of CPU and GPU components, enabling seamless integration into production frameworks
+
+**Client Integration:**
+We have developed an ATHENA client to interface with our backend, with no direct dependencies on TRACCC—all TRACCC dependencies are compiled within the container image. The modular design allows future integration with other track finding algorithms by simply changing the ingress point, and supports flexibility in switching between different tracking pipelines.
+
+## Expected Results
+
+This GPU as a Service approach enables several key improvements:
+- **Enhanced GPU Utilization:** Multiple model instances can be loaded onto a single GPU, overcoming the latency overhead introduced by the service architecture
+- **Scalability:** The infrastructure scales gracefully by increasing concurrent requests and model instances without requiring CPU modifications
+- **Future Performance Gains:** Less memory-hungry versions of TRACCC will enable significantly more model instances per GPU, approaching full GPU compute saturation
+- **Production Ready:** The architecture provides a scalable and reliable path for deploying GPU-accelerated particle tracking within production frameworks
+
+<img src="/content/images/throughput_gpu_util_old.pdf" alt="GPU Throughput and Utilization Scaling" style="max-width: 100%; height: auto; display: block; margin: 20px auto;">
+
+*Performance scaling demonstrating throughput improvements and GPU utilization as multiple Triton model instances are deployed on a single GPU. The results show enhanced GPU efficiency through concurrent request management and multiple model instances.*
+
+## Resources
 
 - [GitHub Repository](https://github.com/milescb/traccc-aaS)
-- [CERN Presentation](https://indico.cern.ch/event/1603161/contributions/6755302/attachments/3159774/5613472/general_exam_milescb.pdf)
+- [CERN Presentation](https://indico.cern.ch/event/1572204/contributions/6831725/attachments/3194328/5685546/uslua_traccc_aaS_2025.pdf)
