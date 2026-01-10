@@ -457,6 +457,21 @@ embed[type="application/pdf"] + .pdf-fallback {
     line-height: 1.5;
 }
 
+.cv-activity-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cv-activity-link:hover,
+.cv-activity-link:focus,
+.cv-activity-link:visited {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .cv-development {
     margin-bottom: 15px;
     padding: 12px 15px;
@@ -471,6 +486,21 @@ embed[type="application/pdf"] + .pdf-fallback {
 .cv-development:hover {
     transform: translateX(3px);
     box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.cv-development-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cv-development-link:hover,
+.cv-development-link:focus,
+.cv-development-link:visited {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .cv-text {
