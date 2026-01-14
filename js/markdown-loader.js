@@ -1,4 +1,4 @@
-async function loadMarkdown() {
+async function loadMarkdown(retryCount = 0, maxRetries = 3) {
     const markdownContainer = document.getElementById("markdown-content");
     const file = markdownContainer.getAttribute("data-markdown") || "info.md"; // Default to info.md
     try {
@@ -94,8 +94,20 @@ async function loadMarkdown() {
         document.dispatchEvent(new Event('markdownLoaded'));
         
     } catch (error) {
-        console.error("Error loading Markdown file:", error);
-        markdownContainer.innerHTML = "<p>Failed to load content.</p>";
+        console.error(`Error loading Markdown file (attempt ${retryCount + 1}/${maxRetries + 1}):`, error);
+        
+        // Retry logic with exponential backoff
+        if (retryCount < maxRetries) {
+            const delay = Math.pow(2, retryCount) * 500; // 500ms, 1s, 2s
+            console.log(`Retrying in ${delay}ms...`);
+            markdownContainer.innerHTML = `<p>Loading content... (attempt ${retryCount + 1}/${maxRetries + 1})</p>`;
+            
+            setTimeout(() => {
+                loadMarkdown(retryCount + 1, maxRetries);
+            }, delay);
+        } else {
+            markdownContainer.innerHTML = "<p>Failed to load content after multiple attempts. Please refresh the page.</p>";
+        }
     }
 }
 
