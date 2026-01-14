@@ -160,3 +160,28 @@ function addCopyButtons() {
 
 // Automatically load markdown on page load
 document.addEventListener("DOMContentLoaded", loadMarkdown);
+
+// Handle browser back/forward navigation (especially for cached pages)
+window.addEventListener("pageshow", function(event) {
+    // If page is loaded from cache (bfcache), reload markdown
+    if (event.persisted) {
+        const markdownContainer = document.getElementById("markdown-content");
+        if (markdownContainer && !markdownContainer.innerHTML.trim()) {
+            loadMarkdown();
+        }
+    }
+});
+
+// Handle visibility changes (tab switching)
+document.addEventListener("visibilitychange", function() {
+    if (!document.hidden) {
+        // Tab became visible
+        const markdownContainer = document.getElementById("markdown-content");
+        // Only reload if container exists but is empty or shows error
+        if (markdownContainer && 
+            (!markdownContainer.innerHTML.trim() || 
+             markdownContainer.innerHTML.includes("Failed to load"))) {
+            loadMarkdown();
+        }
+    }
+});
